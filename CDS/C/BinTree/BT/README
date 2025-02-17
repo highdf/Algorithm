@@ -1,0 +1,32 @@
+BT.c算法描述
+
+SeqTrav描述
+------->原型 void SeqTrav(PtrToBinTreeNode BT)
+------->思路
+	>在BT非空的条件下，BT始指ROOT，将BT入队
+	>弹出队首元素，赋给BT
+	>操作BT，再将左右分支入队，
+	>循环以上两步,直到队列为空。
+	
+PreorderTrav描述
+------->原型 void PreorderTrav(PtrToBinTreeNode BT)
+------->思路
+	>用栈保存操作路径的起始结点，
+	>初始化，将ROOT入栈
+	>弹出栈顶元素给BT，
+	>用循环产生操作路径
+	>重复以上两步，栈为空时停止
+
+InorderTrav描述
+------->原型 void InorderTrav(PtrToBinTreeNode BT)
+------->思路
+	>将ROOT入栈，进行初始化
+	>(P1)先产生遍历序列，用栈保存
+	>(P2)在P1产生的遍历序列下，生成操作序列
+	>循环以上两步
+
+PostorderTrav描述
+------->原型 void PostorderTrav(PtrToBinTreeNode BT)
+------->思路
+	>同InorderTrav
+

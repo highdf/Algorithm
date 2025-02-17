@@ -1,0 +1,27 @@
+fun4.1.6程序行为描述
+
+main行为
+------->概述
+	>从in文件中接收输入数据，树种总数(n)
+	>完成对二叉搜索树的初始化
+	>用循环逐一接收树的种类名(Name)，并调用函数F0
+	>循环结束后，调用Print,进行输出
+
+F0的行为
+------->原型 void F0(PtrToBinTree BT,char* Name)
+------->目的
+	>在二叉树中查找树种名称，再根据查找结果，执行不同的行为
+------->概述
+	>调用FindBST,在二叉树中查找字符串Name
+	>若在,将结点的数据域字段Count+1，反之，调用CreatElement,创建数据域，再	
+	>调用InsertBST,将数据域插入二叉树中
+
+CreatElement行为
+------->原型 ElementTypeBT* CreatElement(char *Name
+------->目的 
+	>创建包含Name的数据域,并返回指向其的指针
+
+Print行为
+------->原型 void Print(PtrToBijTree BT)
+------->目的 
+	>以中序遍历BT,打印每个结点的数据

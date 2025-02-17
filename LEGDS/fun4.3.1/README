@@ -1,0 +1,68 @@
+fun4.3.1描述
+
+文件组织
+main.c	<CreatTree.c
+	<Operat.c	
+
+CreatTree.c	<Ch_Stack.c
+		<BST.c
+		<Tree.c
+
+Operat.c 	<BST.c
+
+main行为描述
+	<先从in中读入N与M，再调用CreatTree生成家谱树,用循环逐一读入命题文本，调用Opera
+	t
+	对文本进行解析，并将目标命题的真值保存在TrueValue数组中，最后，进行打印结果
+
+CreatTree行为描述
+------->原型 	TreeNode* CreatTree(BinTreeNode **BST,FILE *fp,int N);
+------->行为	
+	<使用循环逐行获取家谱树文本，调用GetLine获取一行文本，调用OperatLine处理该行文
+	本
+	返回该文本中的名称与级数信息，判断是否为根结点，< Yes:P1 NO:P2
+	<循环结束后，返回家谱树根结点地址。
+
+	<P1:依次调用MakeTreeRoot,MakeBSTRoot,再将TreeRoot信息入栈，
+	<P2:先调用ComPath求出当前元素在家谱树中的路径，调用InsertTree插入该Tree元素，
+	调用
+	sertBSTNode插入BST元素，最后，调用PushCh_Stack将该结点信息入栈，
+
+Operat行为描述
+------->原型	status Operat(BinTreeNode *BST,char *str,TreeNode *tree);
+------->行为
+	<先调用Is处理该命题的类型和名称信息,调用FindTree,查找包含该名称的结点，再根据
+	类型调用相应的Method函数计算该命题的真值.
+
+数据结构定义
+------->BST
+------->元素 	typedef struct BTElement{
+			char Value[20];
+			TreeNode *ptree;
+		}ElementTypeBT;
+		typedef ElementTypeBT* PtrToElementTypeBT;
+
+------->目的
+	>保存家谱树中的Name字段和对应的结点地址，方便根据Name，查找家谱树中的相应结点
+
+------->Ch_Stack
+------->元素	typedef struct ElementCh_Stack0{
+			char Name[20];
+			int num;
+		}ElementTypeCh_Stack0;
+
+------->目的
+	>保存家谱树元素的Name字段与级数，是为了在InsertTree操作中确定插入元素在家谱树
+	中
+	的路径
+
+------->Tree
+------->元素	typedef struct TreeElement{
+			char Name[20];
+			int num;
+		}ElementTypeTree;
+------->结点
+		typedef struct TreeNode{
+			ElementTypeTree *Data;
+			struct TreeNode *Child[2];
+		}TreeNode;
