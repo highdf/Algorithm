@@ -1,0 +1,6 @@
+		} else if(mode == STRING && front != '\\' && str[si] == '"') {
+			mode = GENERAL;
+		}
+
+		if(mode == GENERAL) {
+			//printf("si = %d,ti = %d\n",si,ti);
